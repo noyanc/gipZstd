@@ -11,13 +11,8 @@
 #include <string>
 #include <vector>
 
-class gipZstd : public gBaseComponent {
+class gipZstd {
 public:
-	gipZstd();
-	~gipZstd();
-
-	void update() override;
-
 	/**
 	 * Compresses the input string using Zstandard (ZSTD) compression with a specified compression level.
 	 *
@@ -28,7 +23,7 @@ public:
 	 *                   or false if an error occurs during compression. Can be nullptr.
 	 * @return A vector of uint8_t containing the compressed data. If compression fails, the returned vector will be empty.
 	 */
-	std::vector<uint8_t> compressString(const std::string& input, int compressionLevel, bool* outSuccess);
+	static std::vector<uint8_t> compressString(const std::string& input, int compressionLevel, bool* outSuccess);
 
 	/**
 	 * Decompresses the compressed data back into a string using Zstandard (ZSTD) decompression.
@@ -40,7 +35,7 @@ public:
 	 *                   or false if an error occurs during decompression. Can be nullptr.
 	 * @return A string containing the decompressed data. If decompression fails, the returned string will be empty.
 	 */
-	std::string decompressString(const std::vector<uint8_t>& compressedData, size_t originalSize, bool* outSuccess);
+	static std::string decompressString(const std::vector<uint8_t>& compressedData, size_t originalSize, bool* outSuccess);
 };
 
 #endif

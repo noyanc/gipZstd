@@ -6,16 +6,6 @@
 
 #include "zstd.h"
 
-gipZstd::gipZstd() {
-}
-
-gipZstd::~gipZstd() {
-}
-
-void gipZstd::update() {
-
-}
-
 std::vector<uint8_t> gipZstd::compressString(const std::string& input, int compresssionLevel, bool* outSuccess) {
 	size_t maxdistsize = ZSTD_compressBound(input.size());
 	std::vector<uint8_t> compresseddata(maxdistsize);
