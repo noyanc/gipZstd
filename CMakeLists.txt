@@ -6,7 +6,6 @@ set(pluginname gipZstd)
 
 ##### PLUGIN PATHS #####
 set(PLUGIN_DIR ${PLUGINS_DIR}/${pluginname})
-set(PLUGIN_LIBS_DIR ${PLUGIN_DIR}/libs)
 
 
 ##### PLUGIN SOURCES #####
@@ -15,13 +14,16 @@ list(APPEND PLUGIN_SRCS
 )
 
 
+##### ZSTD #####
+# Fetched at configure time, see external/zstd.cmake for the pinned commit.
+include(${PLUGIN_DIR}/external/zstd.cmake)
+
+
 ##### PLUGIN HEADERS #####
 list(APPEND PLUGIN_INCLUDES
 			${PLUGIN_DIR}/src
+			${zstd_SOURCE_DIR}/lib
 )
-
-add_subdirectory(${PLUGIN_LIBS_DIR}/src/zstd/build/cmake zstd)
-target_include_directories(zstd PUBLIC ${PLUGIN_LIBS_DIR}/src/zstd/lib/)
 
 list(APPEND PLUGIN_LINKLIBS
 		libzstd_static
